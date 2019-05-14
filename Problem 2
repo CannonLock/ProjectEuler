@@ -1,0 +1,28 @@
+import time
+
+#start timer
+start = time.time()
+
+#initialize values
+fibonacciNmbrPrev = 1
+fibonacciNmbrCurr = 2
+finalValue = 0
+
+#sum fibonacci numbers under 4 million
+while fibonacciNmbrCurr<4000000:
+    #save second fibonacci number
+    tempSave = fibonacciNmbrCurr
+    #sum the first two to create new
+    fibonacciNmbrCurr = fibonacciNmbrPrev + fibonacciNmbrCurr
+    fibonacciNmbrPrev = tempSave
+    #eliminate the odd numbers
+    if fibonacciNmbrPrev % 2 == 0:
+        finalValue = finalValue + fibonacciNmbrPrev
+
+#end timer
+end = time.time()
+
+#print time and solution
+print("Time: " + str(end - start))
+print("Solution: " + str(finalValue))
+
