@@ -1,0 +1,24 @@
+import time
+
+#start timer
+start = time.time()
+
+#initialize variables
+multiple = 1
+finalSum = 0
+
+#find and sum multiples of 3 and 5 less than 1000
+while multiple < 1000:
+    if multiple % 3 == 0:
+        finalSum += multiple
+    else:
+        if multiple % 5 == 0:
+            finalSum += multiple
+    multiple += 1
+
+#end timer
+end = time.time()
+
+#print time and solution
+print("Time: " + str(end - start))
+print("Solution: " + str(finalSum))
