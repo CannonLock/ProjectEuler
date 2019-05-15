@@ -1,0 +1,26 @@
+import time
+
+#start timer
+start = time.time()
+
+#create a list of 10001 primes with the Sieve of Eratothenes
+primeList = [2]
+nmbrOfPrimes = 1
+searchIndex = 3
+while nmbrOfPrimes != 10001:
+    isFactor = True
+    for prime in primeList:
+        if searchIndex % prime == 0:
+            isFactor = False
+            break
+    if isFactor:
+        primeList.append(searchIndex)
+        nmbrOfPrimes += 1
+    searchIndex += 2
+
+#end timer
+end = time.time()
+
+#prints results
+print("Time:" + str(end - start))
+print(primeList[primeList.__len__()-1])
