@@ -1,0 +1,22 @@
+import time
+
+#start timer
+start = time.time()
+
+#find the sum of the squares up to 100
+x = 1
+sumOfSquares = 0
+while x < 101:
+    sumOfSquares += x*x
+    x += 1
+
+#find the square of the sums up to 100
+sumOfNumbers = ((100+1)*100)/2
+squareOfSum = sumOfNumbers*sumOfNumbers
+
+#end timer
+end = time.time()
+
+#print results
+print("Time: " + str(end-start))
+print(squareOfSum - sumOfSquares)
