@@ -1,0 +1,60 @@
+import time
+
+#recursive prime factorization finder
+def recursiveFactorizer(toFactor, primeFactorList, primeList):
+
+    #simplifies the information that is needed for easy access
+    factorizationProduct = listProduct(primeFactorList)
+    revisedToFactor = toFactor/factorizationProduct
+    lastNumberInList = primeList[int(primeList.__len__()-1)]
+
+    #checks if all the factors have been found
+    if revisedToFactor == 1:
+        return primeFactorList
+
+    #checks if there is multiple occurences of a prime factor
+    if revisedToFactor%lastNumberInList == 0:
+        primeFactorList.append(lastNumberInList)
+        return recursiveFactorizer(toFactor, primeFactorList, primeList)
+
+    #generates primes and checks if they are factors of the adjusted number to factor
+    for number in range(lastNumberInList, int(revisedToFactor)+1):
+        isFactor = True
+        for prime in primeList:
+            if number%prime == 0:
+                isFactor = False
+                break
+        if isFactor:
+            primeList.append(number)
+            if revisedToFactor%number == 0:
+                primeFactorList.append(number)
+                #calls the function on the updated primeFactorList and primeList
+                return recursiveFactorizer(toFactor, primeFactorList, primeList)
+
+#finds the product of all the elements in a list
+def listProduct(list):
+    finalProduct = 1
+    for number in list:
+        finalProduct *= number
+    return finalProduct
+
+#finds all the primes that could be a factor of input
+#starts the timer
+start = time.time()
+
+#initialize variables
+primeList = [2]
+primeFactorList = []
+
+#find factors of numbers
+toFactor = 600851475143
+
+#calculate all prime factors
+primeFactorList = recursiveFactorizer(toFactor,primeFactorList,primeList)
+
+#end timer
+end = time.time()
+
+#print results
+print("Time:" + str(end - start))
+print(primeFactorList[primeFactorList.__len__()-1])
