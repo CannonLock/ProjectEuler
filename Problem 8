@@ -1,0 +1,37 @@
+import urllib.request
+import time
+
+#start timer
+start = time.time()
+
+#import the problem to access the number easier
+url = "https://projecteuler.net/problem=8"
+data = urllib.request.urlopen(url).read()
+data1 = str(data)
+#assemble the number from the page readout prints in block readout
+locationTracker = data1.find("73167")
+bigNumber = data1[data1.find("73167"):data1.find("73167")+50]
+for j in range(0,19):
+    locationTracker = locationTracker + 58
+    bigNumber += data1[locationTracker:locationTracker+50]
+
+#multiply a string of 13 numbers
+def multiplyNums(string):
+    finalProduct = 1
+    for index in range(13):
+        finalProduct *= int(string[index:index+1])
+    return finalProduct
+
+#main
+maxProduct = 0
+for index in range(988):
+    newProduct = multiplyNums(bigNumber[index:index+13])
+    if (newProduct>maxProduct):
+        maxProduct = newProduct
+
+#end timer
+end = time.time()
+
+#prints results
+print("Time: " + str(end - start))
+print("Solution: " + str(maxProduct))
