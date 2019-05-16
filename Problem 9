@@ -1,0 +1,31 @@
+import time
+import math
+
+#finds the a variable in terms of b
+def findAAndC(b):
+    a = ((1000*b-500000)/(b-1000))
+    c = math.sqrt(a*a + b*b)
+    return a,c
+
+#finds if a number is whole
+def isWhole(number):
+    if number%1 == 0:
+        return True
+    return False
+
+#finds the b the creates a whole a and c variable
+def findWholeABAndCProduct():
+    for number in range(1,1000):
+        AAndC = findAAndC(number)
+        if (isWhole(AAndC[0]) and isWhole(AAndC[1])):
+            return AAndC[0]*number*AAndC[1]
+
+
+#time answer computation
+start = time.time()
+solution = findWholeABAndCProduct()
+end = time.time()
+
+#prints results
+print("Time: " + str(end - start))
+print("Solution: " + str(solution))
