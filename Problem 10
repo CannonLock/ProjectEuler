@@ -1,0 +1,31 @@
+import time
+from math import sqrt
+
+#start timer
+start = time.time()
+#creates list of all the prime numbers
+primes = [2]
+i = 3
+while i < 2000000:
+    isPrime = True
+    #uses all numbers in primes list to check the i integer to see if it is prime
+    for j in primes:
+        #makes sure to only check below the sqrt
+        if j > sqrt(i)+1:
+            break
+        #stops if it is divisible by a number in the list making it not prime
+        if i % j == 0:
+            isPrime = False
+            break
+    #adds it to the list of primes if it is not divisible
+    if isPrime == True:
+        primes.append(i)
+    i = i + 1
+solution = sum(primes)
+
+#end timer
+end = time.time()
+
+#prints results
+print("Time: " + str(end - start))
+print("Solution: " + str(solution))
