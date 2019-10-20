@@ -1,4 +1,4 @@
-import time
+import time, math
 
 #start timer
 start = time.time()
@@ -10,6 +10,8 @@ searchIndex = 3
 while nmbrOfPrimes != 10001:
     isFactor = True
     for prime in primeList:
+        if prime > math.sqrt(searchIndex):
+            break
         if searchIndex % prime == 0:
             isFactor = False
             break
